@@ -1,0 +1,33 @@
+import "../lib/startup.i"
+import "../lib/stdlib.i"
+import "../lib/vdplib.i"
+
+main() {
+    var a, key;
+
+    vdp_mode(8);
+    vdp_scaling(0);
+    vdp_textcolour(11);
+    cls();
+    set_cursor_mode(0);
+
+    a = 0;
+    while a < 200 {
+        vdp_plot(0,0);
+        vdp_lineto(200,a);
+        vdp_gfxcolour(rand_range(0, 15));
+        a = a + 1;
+    }
+    a = 0;
+    while a < 201 {
+        vdp_plot(0,0);
+        vdp_lineto(a,200);
+        vdp_gfxcolour(rand_range(0, 15));
+        a = a + 1;
+    }
+
+    vdp_textcolour(15);
+    key = getc(); # wait for key press
+    cls();
+    set_cursor_mode(1);
+}

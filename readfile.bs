@@ -1,0 +1,17 @@
+import "../lib/startup.i"
+import "../lib/stdlib.i"
+import "../lib/files.i"
+
+main() {
+    var fp, c;
+    cls();
+    fp = fopen("graphics.txt", "r+");
+
+    while feof(fp) == 0 {
+        # fgetc(file_handle) allows read file byte by byte
+        c = fgetc(fp);
+
+        putc(c);
+    }   
+
+}

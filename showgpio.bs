@@ -1,0 +1,21 @@
+import "../lib/startup.i"
+import "../lib/stdlib.i"
+import "../lib/gpio.i"
+import "../lib/keys.i"
+
+main() 
+{
+    var gpio, lastkey;
+    cls();
+
+    while lastkey != 27 {
+    
+        gotoxy(0,0);
+        gpio = gpio_getport('c');
+        printf("GPIO port C is %d\r\n", gpio);
+
+        lastkey = keys_getlast();
+        printf("Last key was: %c\r\n", lastkey);
+
+    }
+}

@@ -1,0 +1,59 @@
+import "../lib/startup.i"
+import "../lib/stdlib.i"
+import "../lib/str.i"
+
+var guess;
+var randomNumber;
+var line[2];
+var key;
+
+main() 
+{
+    cls();
+    gotoxy(0,0);
+
+    printf(" #     #                                 ####                          ###\r\n");
+    printf(" ##    # #   # #    # ####  ##### ####  #    # #   # #####  ###   ###  ###\r\n");
+    printf(" # #   # #   # ##  ## #   # #     #   # #      #   # #     #     #     ###\r\n");
+    printf(" #  #  # #   # # ## # ####  ####  #   # #  ### #   # ####   ###   ###   # \r\n");
+    printf(" #   # # #   # #    # #   # #     ####  #    # #   # #         #     #    \r\n");
+    printf(" #    ## #   # #    # #   # #     #  #  #    # #   # #     #   # #   # ###\r\n");
+    printf(" #     #  ###  #    # ####  ##### #   #  ####   ###  #####  ###   ###  ###\r\n");
+    printf("\r\n");
+
+    label starthere;
+
+    randomNumber = rand_range(0, 10);                # create random number to guess
+
+    printf("Guess a number between 0 and 10\r\n");
+
+    while randomNumber != guess {
+        readline(&line, 6);                         # user input line
+        guess = asc2int(&line);                     # turn string into number. Uses str.i library
+
+        if guess < randomNumber {
+            printf(" Too LOW, try again\r\n");    
+        }
+        if guess > randomNumber {
+            printf(" Too HIGH, try again\r\n");    
+        }
+
+    }
+
+    printf("\r\nCORRECT, it was: %d\r\n", randomNumber);
+    printf("Play again y/n?\r\n");   
+
+
+    key = getc();
+    if key == 'n' {
+        printf("BYE!\r\n");   
+        exit();
+    }
+    goto starthere;
+}
+
+
+
+# NOTE:
+# asc2int(&line) uses a very quick hack to return a number from 1 or 2 chars.
+# '&line' is a pointer to the memory where the line string is stored.
